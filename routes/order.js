@@ -59,7 +59,7 @@ router.get("/", adminVerifyToken, async (req, res) => {
   }
 });
 
-router.get("/income", adminVerifyToken, async (req, res) => {
+router.get("/income", adminVerifyToken, async (req, res) => {isAdmin
   const date = new Date();
   const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
   const beforeLastMonth = new Date(

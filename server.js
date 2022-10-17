@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const cors = require('cors')
 const mongoose = require('mongoose');
 const dotenv= require("dotenv").config();
 const app = express();
@@ -11,7 +11,7 @@ const  cartRoute= require('./routes/cart');
 const  orderRoute= require('./routes/order');
 
  
-
+app.use(cors())
 app.use(bodyParser.urlencoded({
   extended: true
 }));

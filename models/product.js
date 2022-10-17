@@ -7,8 +7,8 @@ let productSchema = new Schema(
     imgURL: { type: String, required: true },
     price: { type: Number, required: true },
     desc: { type: String },
-    planter : {type:Array},
-    categories :{type:Array }
+    categories :{type:Array },
+    inStock :{type : Boolean ,default: true}
     
   },
   { timestamps: true }

@@ -23,10 +23,10 @@ router.post("/register", (req, res) => {
   });
 });
 router.post("/login", (req, res) => {
-  const username = req.body.name;
+  const email = req.body.email;
   const password = req.body.password;
 
-  User.findOne({ name: username }, function (err, foundUser) {
+  User.findOne({ email: email }, function (err, foundUser) {
     try {
       if (foundUser) {
         bcrypt.compare(password, foundUser.password, function (err, result) {
