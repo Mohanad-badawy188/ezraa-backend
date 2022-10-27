@@ -32,7 +32,7 @@ const {
     }
   });
   
-  router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
+  router.delete("/:id", verifyToken, async (req, res) => {
     try {
       await Cart.findByIdAndDelete(req.params.id);
       res.status(200).json("item deleted successfully");
@@ -43,7 +43,7 @@ const {
   
   router.get("/find/:userId",verifyTokenAndAuth, async (req, res) => {
     try {
-      const cart = await Cart.findOne({userId:req.params.userId});
+      const cart = await Cart.find({userId:req.params.userId});
   
       res.status(200).json(cart);
     } catch (err) {

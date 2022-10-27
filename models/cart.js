@@ -4,17 +4,19 @@ var Schema = mongoose.Schema;
 let cartSchema = new Schema(
   {
     userId: { type: String, required: true },
-    products: [
+    products: 
       {
-        productId: {
-          type: String,
+        product: {
+          type: Object,
         },
         quantity: {
           type: Number,
           default: 1,
         },
       },
-    ],
+    
+    planter:{type:String},
+
   },
   { timestamps: true }
 );

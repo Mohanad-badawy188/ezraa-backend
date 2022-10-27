@@ -15,8 +15,8 @@ const verifyToken = (req, res, next) => {
 
 const verifyTokenAndAuth = (req , res,next)=>{
     verifyToken(req,res,()=>{
-        if (req.user.id == req.params.id || req.user.isAdmin)
-        next();
+        if (req.user._id == req.params.id || req.user.isAdmin)
+        next(); 
         else{
             return res.status(403).json("please sign in to continue !");
         }

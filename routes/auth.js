@@ -11,11 +11,20 @@ router.post("/register", (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: hash,
-      });
-      try {
-        const saveduser = await user.save();
 
-        res.status(201).json(saveduser);
+      });
+      const accessToken = jwt.sign(
+        {
+          id: user.id,
+          isAdmin: user.isAdmin,
+        },
+        process.env.JWT_SEC,
+        { expiresIn: "2d" }
+      );
+      try {
+        const foundUser = await user.save();
+
+        res.status(201).json({foundUser,accessToken});
       } catch (err) {
         res.status(500).json(err);
       }
@@ -39,7 +48,7 @@ router.post("/login", (req, res) => {
               process.env.JWT_SEC,
               { expiresIn: "2d" }
             );
-            res.status(200).json({ ...foundUser._doc, accessToken });
+            res.status(200).json({ foundUser , accessToken });
           } else if (result !== true) {
             res.status(401).json("wrong password !");
           }
