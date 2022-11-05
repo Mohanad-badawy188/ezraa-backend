@@ -16,6 +16,8 @@ let cartSchema = new Schema(
       },
     
     planter:{type:String},
+    planterName:{type:String},
+    
 
   },
   { timestamps: true }

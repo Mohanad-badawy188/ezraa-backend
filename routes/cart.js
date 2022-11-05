@@ -40,10 +40,19 @@ const {
       res.status(500).json(err);
     }
   });
-  
-  router.get("/find/:userId",verifyTokenAndAuth, async (req, res) => {
+
+  router.delete("/", verifyToken, async (req, res) => {
     try {
-      const cart = await Cart.find({userId:req.params.userId});
+      await Cart.deleteMany();
+      res.status(200).json("item deleted successfully");
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  
+  router.get("/find/:id",verifyTokenAndAuth, async (req, res) => {
+    try {
+      const cart = await Cart.find({userId:req.params.id});
   
       res.status(200).json(cart);
     } catch (err) {
