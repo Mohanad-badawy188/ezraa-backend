@@ -52,19 +52,24 @@ router.get("/find/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const qlast3 = req.query.last3;
+  const qlast4 = req.query.last4;
+  const latest = req.query.latest
   const qCategory = req.query.category;
   try {
     let products;
-    if (qlast3) {
-      products = await Product.find().sort({ createdAt: -1 }).limit(3);
+    if (qlast4) {
+      products = await Product.find().sort({ createdAt: -1 }).limit(4);
     } else if (qCategory) {
       products = await Product.find({
         categories: {
           $in: [qCategory],
         },
       });
-    } else {
+    }else if (latest){
+      products = await Product.find().sort({ createdAt: -1 })
+    } 
+    
+    else {
       products = await Product.find();
     }
 
